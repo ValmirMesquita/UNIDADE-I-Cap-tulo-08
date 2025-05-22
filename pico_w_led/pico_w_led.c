@@ -18,6 +18,14 @@
  * https://github.com/raspberrypi/pico-examples
  */
 
+ /***************************************************************************************************
+Autor: Valmir Linhares de Sousa de Mesquita
+UNIDADE-I-Cap-tulo-08 - pico_w_led
+Data:    22 de Maio de 2025
+Link GitHub: https://github.com/ValmirMesquita/UNIDADE-I-Cap-tulo-08/tree/main/pico_w_led
+Link YouTube: 
+****************************************************************************************************/
+
 #include "pico/cyw43_arch.h"
 #include "pico/stdlib.h"
 #include "lwip/tcp.h"
