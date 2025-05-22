@@ -37,8 +37,11 @@ Link YouTube:
 #define LED_PIN3 11               // Pino GPIO utilizado para o LED
 
 // Define o nome e a senha da rede Wi-Fi a ser conectada
-#define WIFI_SSID "MR.ROBOT"
-#define WIFI_PASS "mr_robot@007"
+#define WIFI_SSID "MARAMAKER"      // Nome da rede Wi-Fi
+#define WIFI_PASS "m@r@m@ker" // Senha da rede Wi-Fi
+// #define AP_SERVER_IP_ARDOR ""
+// #define AP_SERVER_PORT 44444
+// #define CLIENT_COMMAND_LISTEN_PORT 44444
 
 // Resposta HTML enviada ao navegador após requisiçãot6-
 
@@ -150,7 +153,7 @@ int main() {
 
     cyw43_arch_enable_sta_mode();
     printf("Conectando à rede Wi-Fi...\n");
-
+  
     // Conecta à rede definida
     if (cyw43_arch_wifi_connect_timeout_ms(WIFI_SSID, WIFI_PASS, CYW43_AUTH_WPA2_AES_PSK, 10000)) {
         printf("Falha ao conectar à rede Wi-Fi\n");

@@ -27,6 +27,10 @@
  #include "hardware/pwm.h"
  #include "hardware/clocks.h"
 
+#define WIFI_SSID "MR.ROBOT"
+#define WIFI_PASS "mr_robot@007"
+
+
  // Configuração do pino do buzzer
  #define BUZZER_PIN 21
  
@@ -72,8 +76,8 @@
 #define LED_PIN2 13               // Pino GPIO utilizado para o LED
 #define LED_PIN3 11               // Pino GPIO utilizado para o LED
 
-#define WIFI_SSID "MESQUITA"      // Nome da rede Wi-Fi
-#define WIFI_PASS "DudaLeti2017" // Senha da rede Wi-Fi
+#define WIFI_SSID "MARAMAKER"      // Nome da rede Wi-Fi
+#define WIFI_PASS "m@r@m@ker" // Senha da rede Wi-Fi
 
 // Resposta HTML enviada ao navegador após requisição
 #define HTTP_RESPONSE "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" \
@@ -182,7 +186,7 @@ int main() {
     sleep_ms(10000);   // Aguarda a conexão da porta serial
 
     // Inicializar o PWM no pino do buzzer
-     pwm_init_buzzer(BUZZER_PIN);
+     //pwm_init_buzzer(BUZZER_PIN);
 
     printf("Iniciando servidor HTTP\n");
 
