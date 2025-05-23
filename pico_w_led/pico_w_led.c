@@ -37,11 +37,9 @@ Link YouTube:
 #define LED_PIN3 11               // Pino GPIO utilizado para o LED
 
 // Define o nome e a senha da rede Wi-Fi a ser conectada
-#define WIFI_SSID "MARAMAKER"      // Nome da rede Wi-Fi
-#define WIFI_PASS "m@r@m@ker" // Senha da rede Wi-Fi
-// #define AP_SERVER_IP_ARDOR ""
-// #define AP_SERVER_PORT 44444
-// #define CLIENT_COMMAND_LISTEN_PORT 44444
+#define WIFI_SSID "MESQUITA"      // Nome da rede Wi-Fi
+#define WIFI_PASS "DudaLeti2017" // Senha da rede Wi-Fi
+
 
 // Resposta HTML enviada ao navegador após requisiçãot6-
 
@@ -58,7 +56,7 @@ Link YouTube:
                       "<div class=\"card shadow-lg\">" \
                       "<div class=\"card-body text-center\">" \
                       "<h1 class=\"card-title mb-4\">Controle do LED</h1>" \
-                      "<p class=\"lead\">Controle o LED da Raspberry Pi Pico através dos botões abaixo.</p>" \
+                      "<p class=\"lead\"></p>" \
                       "<div class=\"btn-group-vertical\" role=\"group\" aria-label=\"Controles do LED\">" \
                       "<a href=\"/led/on\" class=\"btn btn-success btn-lg mb-3\">Ligar LED-B</a>" \
                       "<a href=\"/led/off\" class=\"btn btn-danger btn-lg mb-3\">Desligar LED-B</a>" \

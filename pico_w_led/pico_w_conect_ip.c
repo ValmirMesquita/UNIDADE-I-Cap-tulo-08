@@ -27,8 +27,9 @@
  #include "hardware/pwm.h"
  #include "hardware/clocks.h"
 
-#define WIFI_SSID "MR.ROBOT"
-#define WIFI_PASS "mr_robot@007"
+// Define o nome e a senha da rede Wi-Fi a ser conectada
+#define WIFI_SSID "MESQUITA"      // Nome da rede Wi-Fi
+#define WIFI_PASS "DudaLeti2017" // Senha da rede Wi-Fi
 
 
  // Configuração do pino do buzzer
@@ -76,9 +77,6 @@
 #define LED_PIN2 13               // Pino GPIO utilizado para o LED
 #define LED_PIN3 11               // Pino GPIO utilizado para o LED
 
-#define WIFI_SSID "MARAMAKER"      // Nome da rede Wi-Fi
-#define WIFI_PASS "m@r@m@ker" // Senha da rede Wi-Fi
-
 // Resposta HTML enviada ao navegador após requisição
 #define HTTP_RESPONSE "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" \
                       "<!DOCTYPE html><html lang=\"pt-BR\">" \
@@ -93,7 +91,7 @@
                       "<div class=\"card shadow-lg\">" \
                       "<div class=\"card-body text-center\">" \
                       "<h1 class=\"card-title mb-4\">Controle do LED</h1>" \
-                      "<p class=\"lead\">Controle o LED da Raspberry Pi Pico através dos botões abaixo.</p>" \
+                      "<p class=\"lead\"></p>" \
                       "<div class=\"btn-group-vertical\" role=\"group\" aria-label=\"Controles do LED\">" \
                       "<a href=\"/led/on\" class=\"btn btn-success btn-lg mb-3\">Ligar LED-B</a>" \
                       "<a href=\"/led/off\" class=\"btn btn-danger btn-lg mb-3\">Desligar LED-B</a>" \
@@ -103,7 +101,7 @@
                       "<a href=\"/led3/off\" class=\"btn btn-danger btn-lg mb-3\">Desligar LED-G</a>" \
                       "</div>" \
                       "<div class=\"mt-4\">" \
-                      "<small class=\"text-muted\">Controle simples utilizando o servidor HTTP.</small>" \
+                      "<small class=\"text-muted\">Valmir Linhares de Sousa de Mesquita.</small>" \
                       "</div>" \
                       "</div>" \
                       "</div>" \

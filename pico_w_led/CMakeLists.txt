@@ -59,6 +59,9 @@ target_link_libraries(pico_w_conect_ip
     pico_cyw43_arch_lwip_threadsafe_background
     hardware_clocks
     hardware_adc
+    hardware_i2c
+    pico_binary_info
+   
  
 )
 
