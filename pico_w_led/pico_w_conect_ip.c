@@ -1,21 +1,19 @@
 /*
- * Projeto: Conexão Wi-Fi com Controle de LED via HTTP - Raspberry Pi Pico W
- *
- * Objetivo:
- * Conectar o Raspberry Pi Pico W a uma rede Wi-Fi utilizando o módulo CYW43439,
- * iniciar um servidor HTTP na porta 80 e permitir o controle de um LED por meio de
- * comandos recebidos via navegador web. O sistema também exibe o nome da rede conectada
- * e o endereço IP atribuído dinamicamente.
- *
- * Funcionalidades:
- * - Inicialização e conexão à rede Wi-Fi.
- * - Impressão do SSID e endereço IP no terminal.
- * - Servidor HTTP embarcado com controle de LED via browser.
- * - Comandos: /led/on (liga) e /led/off (desliga).
- * - Loop contínuo para manter a conexão ativa com polling.
- *
- * Baseado em exemplo oficial da Raspberry Pi:
- * https://github.com/raspberrypi/pico-examples
+    ***********************************************************************
+    Projeto: ALerta
+    Autor: Valmir Linhares de Sousa de Mesquita
+    Data: 24 de Maio de 2015
+    *************************************************************************
+    Projeto ALerta com aap via celular e notbook para 
+    controle de leds, o mesmo ao clicar no botão ALERTA enviara 
+    um sinal de alerta acendendo um lede que piscara 15 vezes e 
+    enviara mensagens dno terminal serial mostrando que o alerta foi ligado 
+    e ao clicar no botão desligar alerta encerra e apagarar o led de alerta 
+    botão sirene enviara um sinal de sonoro do buzzer e brilho do led vermelho 
+    indicando o alerta. 
+    Link GitHub: 
+    Link YouTube: https://youtu.be/BM0-H7W6x4g
+
  */
 
 #include "pico/cyw43_arch.h"
@@ -24,12 +22,17 @@
 #include <string.h>
 #include <stdio.h>
 
- #include "hardware/pwm.h"
- #include "hardware/clocks.h"
+#include "hardware/pwm.h"
+#include "hardware/clocks.h"
 
 // Define o nome e a senha da rede Wi-Fi a ser conectada
 #define WIFI_SSID "MESQUITA"      // Nome da rede Wi-Fi
 #define WIFI_PASS "DudaLeti2017" // Senha da rede Wi-Fi
+
+
+#define LED_PIN 12               // Pino GPIO utilizado para o LED
+#define LED_PIN2 13               // Pino GPIO utilizado para o LED
+#define LED_PIN3 11               // Pino GPIO utilizado para o LED
 
 
  // Configuração do pino do buzzer
@@ -73,10 +76,6 @@
      sleep_ms(100); // Pausa de 100ms
  } 
 
-#define LED_PIN 12               // Pino GPIO utilizado para o LED
-#define LED_PIN2 13               // Pino GPIO utilizado para o LED
-#define LED_PIN3 11               // Pino GPIO utilizado para o LED
-
 // Resposta HTML enviada ao navegador após requisição
 #define HTTP_RESPONSE "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n" \
                       "<!DOCTYPE html><html lang=\"pt-BR\">" \
@@ -93,12 +92,10 @@
                       "<h1 class=\"card-title mb-4\">Controle do LED</h1>" \
                       "<p class=\"lead\"></p>" \
                       "<div class=\"btn-group-vertical\" role=\"group\" aria-label=\"Controles do LED\">" \
-                      "<a href=\"/led/on\" class=\"btn btn-success btn-lg mb-3\">Ligar LED-B</a>" \
-                      "<a href=\"/led/off\" class=\"btn btn-danger btn-lg mb-3\">Desligar LED-B</a>" \
-                      "<a href=\"/led2/on\" class=\"btn btn-success btn-lg mb-3\">Ligar LED-R</a>" \
-                      "<a href=\"/led2/off\" class=\"btn btn-danger btn-lg mb-3\">Desligar LED-R</a>" \
-                      "<a href=\"/led3/on\" class=\"btn btn-success btn-lg mb-3\">Ligar LED-G</a>" \
-                      "<a href=\"/led3/off\" class=\"btn btn-danger btn-lg mb-3\">Desligar LED-G</a>" \
+                      "<a href=\"/led/on\" class=\"btn btn-success btn-lg mb-3\">ALERTE</a>" \
+                      "<a href=\"/led/off\" class=\"btn btn-danger btn-lg mb-3\">DESLIGA ALERTA</a>" \
+                      "<a href=\"/led2/on\" class=\"btn btn-success btn-lg mb-3\">SIRENE</a>" \
+                      "<a href=\"/led2/off\" class=\"btn btn-danger btn-lg mb-3\">DESLIGA SIRENE</a>" \                    
                       "</div>" \
                       "<div class=\"mt-4\">" \
                       "<small class=\"text-muted\">Valmir Linhares de Sousa de Mesquita.</small>" \
@@ -122,29 +119,57 @@ static err_t http_callback(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_
     char *request = (char *)p->payload;
 
     if (strstr(request, "GET /led/on")) {
-        gpio_put(LED_PIN, 1);  // Liga o LED
+        for (int i = 0; i < 15; i++)
+        {
+            gpio_put(LED_PIN, 1);  // Liga o LED
+            sleep_ms(500);
+            gpio_put(LED_PIN, 0);  // Liga o LED
+            sleep_ms(500);
+            printf("LED DO ALERTA LIGADO\n"); 
+            
+            
+        }    
+          
+        
+        //gpio_put(LED_PIN, 1);  // Liga o LED
         // Inicializar o PWM no pino do buzzer
-        pwm_init_buzzer(BUZZER_PIN);
-        beep(BUZZER_PIN, 500); // Bipe de 500ms
+        // pwm_init_buzzer(BUZZER_PIN);
+        // beep(BUZZER_PIN, 500); // Bipe de 500ms
+
     } else if (strstr(request, "GET /led/off")) {
         gpio_put(LED_PIN, 0);  // Desliga o LED
+        printf("ALERTA DESLIGADO\n");
     }
 
      if (strstr(request, "GET /led2/on")) {
-        gpio_put(LED_PIN2, 1);  // Liga o LED
-        pwm_init_buzzer(BUZZER_PIN);
-        beep(BUZZER_PIN, 500); // Bipe de 500ms
+
+        for (int i = 0; i < 10; i++)
+        {
+            /* code */
+            gpio_put(LED_PIN2, 1);  // Liga o LED
+            sleep_ms(500);
+            gpio_put(LED_PIN2, 0);  // Desliga o LED
+            sleep_ms(500);
+
+            pwm_init_buzzer(BUZZER_PIN);
+            beep(BUZZER_PIN, 500); // Bipe de 500ms
+            printf("SIRENE LIGADA\n");
+        }
+        
+        
+
     } else if (strstr(request, "GET /led2/off")) {
         gpio_put(LED_PIN2, 0);  // Desliga o LED
+        printf("SIRENE DESLIGADA\n");
     }
 
-    if (strstr(request, "GET /led3/on")) {
-        gpio_put(LED_PIN3, 1);  // Liga o LED
-        pwm_init_buzzer(BUZZER_PIN);
-        beep(BUZZER_PIN, 500); // Bipe de 500ms
-    } else if (strstr(request, "GET /led3/off")) {
-        gpio_put(LED_PIN3, 0);  // Desliga o LED
-    }
+    // if (strstr(request, "GET /led3/on")) {
+    //     gpio_put(LED_PIN3, 1);  // Liga o LED
+    //     pwm_init_buzzer(BUZZER_PIN);
+    //     beep(BUZZER_PIN, 500); // Bipe de 500ms
+    // } else if (strstr(request, "GET /led3/off")) {
+    //     gpio_put(LED_PIN3, 0);  // Desliga o LED
+    // }
 
     // Envia a resposta HTML para o cliente
     tcp_write(tpcb, HTTP_RESPONSE, strlen(HTTP_RESPONSE), TCP_WRITE_FLAG_COPY);
