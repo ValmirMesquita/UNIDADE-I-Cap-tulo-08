@@ -11,7 +11,7 @@
     e ao clicar no botão desligar alerta encerra e apagarar o led de alerta 
     botão sirene enviara um sinal de sonoro do buzzer e brilho do led vermelho 
     indicando o alerta. 
-    Link GitHub: 
+    Link GitHub: https://github.com/ValmirMesquita/UNIDADE-I-Cap-tulo-08/tree/main/pico_w_led
     Link YouTube: https://youtu.be/BM0-H7W6x4g
 
  */
